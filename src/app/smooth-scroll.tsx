@@ -8,7 +8,7 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
     const lenis = new Lenis({
       duration: 1.1,
       smoothWheel: true,
-      smoothTouch: false,
+      // smoothTouch: false,
     });
 
     let rafId = 0;

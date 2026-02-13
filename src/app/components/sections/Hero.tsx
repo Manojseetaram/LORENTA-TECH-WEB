@@ -3,8 +3,10 @@
 import React from "react";
 import { Star } from "lucide-react";
 
+import { SectionKey } from "@/types/section";
+
 interface HeroProps {
-  scrollTo: (key: string) => void;
+  scrollTo: (key: SectionKey) => void;
 }
 
 export default function Hero({ scrollTo }: HeroProps) {
