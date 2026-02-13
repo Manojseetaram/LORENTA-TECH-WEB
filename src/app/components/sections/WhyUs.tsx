@@ -5,7 +5,8 @@ import { WHY_US_ITEMS_ROW1, WHY_US_ITEMS_ROW2 } from "../../constants";
 
 export default function WhyUs() {
   return (
-    <section id="why" className="py-16 scroll-mt-20">
+    <section id="why" className ="">
+
       <div className="mx-auto max-w-6xl px-4">
         <div className="text-center">
           <div className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/70 px-4 py-2">
@@ -56,7 +57,7 @@ export default function WhyUs() {
 
             <div className="rounded-2xl border border-indigo-600/40 bg-indigo-50/60 p-6">
               <h4 className="text-lg font-semibold mb-4 flex items-center gap-2">
-                <span className="text-indigo-700">Lorenta Kiosk</span>
+                <span className="text-indigo-700">Lorenta Technology </span>
               </h4>
               <ul className="space-y-3 text-slate-800">
                 <li className="flex items-start gap-2"><CheckCircle2 className="h-5 w-5 text-emerald-600 mt-0.5" /> 24/7 access</li>

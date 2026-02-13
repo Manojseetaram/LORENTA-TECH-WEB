@@ -19,19 +19,19 @@ export default function Services() {
             <span className="text-sm font-medium">Our Services</span>
           </div>
           <h2 className="mt-6 text-3xl sm:text-5xl font-semibold">What we build</h2>
-          <p className="mt-3 text-slate-600">Practical, tested, reliable solutions.</p>
+          <p className="mt-3 text-slate-600">Practical, tested, reliable solutions by <span className="font-semibold">Lorenta</span>.</p>
         </div>
 
         <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
           <ServiceCard
             icon={<Printer className="h-5 w-5 text-indigo-600" />}
-            title="Document Printing Vending Machines"
-            desc="We design and build document printing vending machines that allow users to print documents quickly without staff support."
+            title="Document Printing Lorenta"
+            desc="We design and build document printing solutions that allow users to print documents quickly without staff support."
             bullets={[
               "Saves time for users",
               "Reduces dependency on manual staff",
               "Self-service system",
-              "Available anytime",
+              "Available 24/7",
             ]}
           />
           <ServiceCard
@@ -83,7 +83,7 @@ function ServiceCard({
   bullets: string[];
 }) {
   return (
-    <div className="rounded-3xl bg-white/70 border border-black/10 p-6 shadow-sm">
+    <div className="rounded-3xl bg-white/70 border border-black/10 p-6 shadow-sm hover:shadow-md transition-shadow duration-300">
       <div className="h-11 w-11 rounded-2xl bg-indigo-50 flex items-center justify-center">
         {icon}
       </div>
@@ -92,7 +92,7 @@ function ServiceCard({
       <ul className="mt-4 space-y-2 text-slate-700">
         {bullets.map((b) => (
           <li key={b} className="flex items-start gap-2">
-            <CheckCircle2 className="h-5 w-5 text-emerald-600 mt-0.5" />
+            <CheckCircle2 className="h-5 w-5 text-emerald-600 mt-0.5 flex-shrink-0" />
             <span>{b}</span>
           </li>
         ))}

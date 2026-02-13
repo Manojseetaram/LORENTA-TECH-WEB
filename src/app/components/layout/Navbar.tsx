@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 
 interface NavbarProps {
@@ -9,10 +9,42 @@ interface NavbarProps {
 }
 
 export default function Navbar({ active, scrollTo }: NavbarProps) {
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  useEffect(() => {
+    const controlNavbar = () => {
+      if (typeof window !== 'undefined') {
+        const currentScrollY = window.scrollY;
+        
+        // Hide navbar when scrolling down, show when scrolling up
+        if (currentScrollY > lastScrollY && currentScrollY > 100) {
+          setIsVisible(false);
+        } else {
+          setIsVisible(true);
+        }
+        
+        setLastScrollY(currentScrollY);
+      }
+    };
+
+    window.addEventListener('scroll', controlNavbar);
+    
+    return () => {
+      window.removeEventListener('scroll', controlNavbar);
+    };
+  }, [lastScrollY]);
+
   return (
     <>
-      {/* Main Container */}
-      <div className="fixed top-8 left-0 right-0 z-50 flex justify-between items-center px-10">
+      {/* Main Container - with visibility transition */}
+      <div 
+        className={`
+          fixed top-8 left-0 right-0 z-50 flex justify-between items-center px-10
+          transition-transform duration-300 ease-in-out
+          ${isVisible ? 'translate-y-0' : '-translate-y-32'}
+        `}
+      >
         {/* Logo and LORENTA TECHNOLOGIES - LEFT SIDE */}
         <button
           onClick={() => scrollTo("home")}
@@ -37,8 +69,8 @@ export default function Navbar({ active, scrollTo }: NavbarProps) {
           </div>
         </button>
 
-        {/* Navigation Links - RIGHT SIDE WITH HOVER SHADOW */}
-        <nav className="rounded-full bg-white/80 backdrop-blur-xl border border-black/10 px-4 py-2.5 shadow-lg hover:shadow-[0_20px_50px_-10px_rgba(0,0,0,0.2)] transition-all duration-300 hover:border-indigo-200/50">
+        {/* Navigation Links - CENTERED */}
+        <nav className="absolute left-1/2 transform -translate-x-1/2 rounded-full bg-white/80 backdrop-blur-xl border border-black/10 px-4 py-2.5 shadow-lg hover:shadow-[0_20px_50px_-10px_rgba(0,0,0,0.2)] transition-all duration-300 hover:border-indigo-200/50">
           <div className="flex items-center gap-2">
             {[
               { key: "how", label: "How to Use" },
@@ -63,6 +95,9 @@ export default function Navbar({ active, scrollTo }: NavbarProps) {
             ))}
           </div>
         </nav>
+        
+        {/* Empty div to maintain spacing - RIGHT SIDE EMPTY */}
+        <div className="w-[180px]"></div>
       </div>
 
       {/* Spacer */}

@@ -6,7 +6,7 @@ import { STEP_CARDS, TEAM_MEMBERS } from "../../constants";
 
 export default function HowToUse() {
   return (
-    <section id="how" className="py-16 scroll-mt-20">
+    <section id="how" className="py-16 scroll-mt-20 "> {/* Fixed: Added closing quote */}
       <div className="mx-auto max-w-6xl px-4">
         <div className="text-center">
           <div className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/70 px-4 py-2">
@@ -17,7 +17,7 @@ export default function HowToUse() {
             Our Expertise: <span className="text-indigo-600">Idea to Product</span>
           </h2>
           <p className="mt-3 text-slate-600 max-w-3xl mx-auto">
-            At <b>Lorenta Technologies</b>, we design and develop smart document printing kiosks and automated vending machines.
+            At <b>Lorenta Technologies</b>, we design and develop smart document printing.
             Our solutions deliver speed, reliability, and seamless user experience.
           </p>
         </div>
@@ -35,7 +35,7 @@ export default function HowToUse() {
               We design automated printing solutions that work on their own.
             </p>
             <p className="mt-3 text-slate-600">
-              We design and develop document printing kiosks and vending machines for colleges, offices, and public areas,
+              We design and develop document printing lorenta for colleges, offices,
               where reliable self-service printing is needed.
             </p>
           </Card>
@@ -48,7 +48,7 @@ export default function HowToUse() {
             </Card>
             <Card title="Our Vision">
               <p className="text-slate-600">
-                Make smart document printing kiosks available in more campuses and offices.
+                Make smart document printing  lorenta available in more campuses and offices.
               </p>
             </Card>
             <Card title="Our Team" className="sm:col-span-2">

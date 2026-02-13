@@ -8,7 +8,10 @@ import {
   Printer,
   Code2,
   AppWindow,
-  Wrench 
+  Wrench,
+  Lightbulb,
+  Settings,
+  Target
 } from "lucide-react";
 
 export const SECTIONS = [
@@ -37,7 +40,7 @@ export const FEATURE_ITEMS_RIGHT = [
 ] as const;
 
 export const STEP_CARDS = [
-  { step: "STEP 1", title: "Scan the Kiosk QR", desc: "Scan the kiosk QR using your mobile camera." },
+  { step: "STEP 1", title: "Scan the lorenta QR", desc: "Scan the lorenta QR using your mobile camera." },
   { step: "STEP 2", title: "Upload Your Document", desc: "Choose your document from phone, laptop, or Google Drive." },
   { step: "STEP 3", title: "Set Print Preference", desc: "Select copies, B&W or color, duplex/single side, and orientation." },
   { step: "STEP 4", title: "Get Your Print Instantly", desc: "Enter OTP / scan QR to receive your print quickly." },
@@ -100,15 +103,30 @@ export const SERVICE_ITEMS = [
   }
 ] as const;
 
-export const TEAM_MEMBERS = ["Suhas", "Prasana", "Manoj", "Ranjana prasad C.H"];
+// UPDATED: Team members with exact names as provided
+export const TEAM_MEMBERS = ["Manoj", "Prasana", "Suhas", "Ranjana prasad C.H"];
+
+// NEW: Idea to Product section content
+export const IDEA_TO_PRODUCT = {
+  title: "Idea to Product",
+  subtitle: "At Lorenta Technologies, we design and develop smart document printing kiosks and automated vending machines.",
+  description: "Our solutions are built to deliver speed, reliability, and seamless user experience, helping institutions and businesses automate printing and distribution with ease.",
+  items: [
+    { icon: Lightbulb, title: "Innovation First", desc: "We transform ideas into practical, working solutions" },
+    { icon: Settings, title: "Full Development Cycle", desc: "From concept to deployment, we handle everything" },
+    { icon: Target, title: "Real-World Testing", desc: "Solutions validated for actual user needs" }
+  ]
+} as const;
 
 export const MARQUEE_TEXT = "Encrypted Files   ✦   Smart Printing   ✦   24/7 Service   ✦   Zero Queues   ✦   Instant Print";
 export const MARQUEE_TEXT_INVERSE = "Contactless Prints   ✦   Instant Print   ✦   Zero Queues   ✦   24/7 Service   ✦   Encrypted Files";
 
+// UPDATED: Contact information with provided details
 export const CONTACT_INFO = {
-  phone: "(add your number)",
-  email: "sales@rdltech.in",
-  address: "(add address)"
+  phone: "(add your number)", // Note: This wasn't provided in the new info
+  email: "sales@lorentatechnologies.com", // Updated domain
+  address: "(add address)", // Note: This wasn't provided in the new info
+  officeAddress: "Head Office: (add address)", // Placeholder
+  contactNumber: "Contact Number: (add number)", // Placeholder
+  fullEmail: "sales@lorentatechnologies Pvt Ltd" // As shown in the content
 } as const;
-
-

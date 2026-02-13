@@ -3,8 +3,15 @@
 import React, { useState } from "react";
 import { Phone, Mail, User, MessageSquare } from "lucide-react";
 
+interface FormData {
+  name: string;
+  phone: string;
+  email: string;
+  message: string;
+}
+
 export default function Contact() {
-  const [form, setForm] = useState({
+  const [form, setForm] = useState<FormData>({
     name: "",
     phone: "",
     email: "",
@@ -16,17 +23,26 @@ export default function Contact() {
     e.preventDefault();
     setStatus("Sending...");
 
-    const res = await fetch("/api/contact", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(form),
-    });
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
 
-    if (res.ok) {
-      setStatus("✅ Message sent!");
-      setForm({ name: "", phone: "", email: "", message: "" });
-    } else {
-      setStatus("❌ Failed. Try again.");
+      const data = await res.json();
+
+      if (res.ok) {
+        setStatus("✅ Message sent successfully!");
+        setForm({ name: "", phone: "", email: "", message: "" });
+        
+        // Clear success message after 5 seconds
+        setTimeout(() => setStatus(""), 5000);
+      } else {
+        setStatus(`❌ Failed: ${data.message || "Try again."}`);
+      }
+    } catch (error) {
+      setStatus("❌ Network error. Please check your connection.");
     }
   };
 
@@ -44,14 +60,17 @@ export default function Contact() {
               <div className="mt-6 space-y-3 text-slate-700">
                 <div className="flex items-center gap-2">
                   <Phone className="h-4 w-4 text-indigo-600" />
-                  <span>Contact Number: +91 98765 43210</span>
+                  <span>Contact Number: (add your number)</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Mail className="h-4 w-4 text-indigo-600" />
-                  <span>Email: sales@lorenta.tech</span>
+                  <span>Email: sales@lorentatechnologies.com</span>
                 </div>
                 <div className="mt-4 text-slate-600">
-                  Head Office: Bengaluru, Karnataka, India
+                  Head Office: (add address)
+                </div>
+                <div className="text-xs text-slate-500 mt-2">
+                  sales@lorentatechnologies Pvt Ltd
                 </div>
               </div>
             </div>
@@ -64,53 +83,75 @@ export default function Contact() {
   );
 }
 
-function ContactForm({ form, setForm, submit, status }: any) {
+interface ContactFormProps {
+  form: FormData;
+  setForm: React.Dispatch<React.SetStateAction<FormData>>;
+  submit: (e: React.FormEvent) => Promise<void>;
+  status: string;
+}
+
+function ContactForm({ form, setForm, submit, status }: ContactFormProps) {
   return (
     <form onSubmit={submit} className="rounded-3xl bg-white/70 border border-black/10 p-6">
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <Field
           icon={<User className="h-4 w-4 text-indigo-600" />}
-          placeholder="Name"
+          placeholder="Name *"
           value={form.name}
-          onChange={(v: string) => setForm((p: any) => ({ ...p, name: v }))}
+          onChange={(v: string) => setForm((p) => ({ ...p, name: v }))}
         />
         <Field
           icon={<Phone className="h-4 w-4 text-indigo-600" />}
-          placeholder="Phone no."
+          placeholder="Phone no. *"
           value={form.phone}
-          onChange={(v: string) => setForm((p: any) => ({ ...p, phone: v }))}
+          onChange={(v: string) => setForm((p) => ({ ...p, phone: v }))}
         />
       </div>
 
       <div className="mt-4">
         <Field
           icon={<Mail className="h-4 w-4 text-indigo-600" />}
-          placeholder="Email"
+          placeholder="Email *"
           value={form.email}
-          onChange={(v: string) => setForm((p: any) => ({ ...p, email: v }))}
+          onChange={(v: string) => setForm((p) => ({ ...p, email: v }))}
         />
       </div>
 
       <div className="mt-4">
         <Field
           icon={<MessageSquare className="h-4 w-4 text-indigo-600" />}
-          placeholder="Message"
+          placeholder="Message *"
           value={form.message}
-          onChange={(v: string) => setForm((p: any) => ({ ...p, message: v }))}
+          onChange={(v: string) => setForm((p) => ({ ...p, message: v }))}
           textarea
         />
       </div>
 
       <button
         type="submit"
-        className="mt-5 w-full rounded-full bg-indigo-600 text-white px-6 py-3 font-medium shadow-md hover:opacity-95 transition"
+        disabled={status === "Sending..."}
+        className="mt-5 w-full rounded-full bg-indigo-600 text-white px-6 py-3 font-medium shadow-md hover:bg-indigo-700 transition disabled:opacity-50 disabled:cursor-not-allowed"
       >
-        Send Message
+        {status === "Sending..." ? "Sending..." : "Send Message"}
       </button>
 
-      {status && <div className="mt-3 text-sm text-slate-600">{status}</div>}
+      {status && status !== "Sending..." && (
+        <div className={`mt-3 text-sm ${
+          status.includes("✅") ? "text-green-600" : "text-red-600"
+        }`}>
+          {status}
+        </div>
+      )}
     </form>
   );
+}
+
+interface FieldProps {
+  icon: React.ReactNode;
+  placeholder: string;
+  value: string;
+  onChange: (v: string) => void;
+  textarea?: boolean;
 }
 
 function Field({
@@ -119,22 +160,17 @@ function Field({
   value,
   onChange,
   textarea,
-}: {
-  icon: React.ReactNode;
-  placeholder: string;
-  value: string;
-  onChange: (v: string) => void;
-  textarea?: boolean;
-}) {
+}: FieldProps) {
   return (
-    <div className="flex items-center gap-2 rounded-2xl border border-black/10 bg-white/70 px-4 py-3">
-      {icon}
+    <div className="flex items-start gap-2 rounded-2xl border border-black/10 bg-white/70 px-4 py-3">
+      <div className="mt-1">{icon}</div>
       {textarea ? (
         <textarea
-          className="w-full bg-transparent outline-none resize-none min-h-[110px]"
+          className="w-full bg-transparent outline-none min-h-[110px]"
           placeholder={placeholder}
           value={value}
           onChange={(e) => onChange(e.target.value)}
+          required
         />
       ) : (
         <input
@@ -142,6 +178,7 @@ function Field({
           placeholder={placeholder}
           value={value}
           onChange={(e) => onChange(e.target.value)}
+          required
         />
       )}
     </div>
