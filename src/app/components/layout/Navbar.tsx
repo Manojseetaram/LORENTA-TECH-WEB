@@ -108,7 +108,7 @@ export default function Navbar({ active, scrollTo }: NavbarProps) {
 
         {/* Mobile Dropdown */}
         {menuOpen && (
-          <div className="md:hidden mt-4 mx-6 bg-white rounded-full shadow-2xl p-6 z-50">
+          <div className="md:hidden mt-4 mx-6 bg-white rounded-4xl shadow-2xl p-6 z-50">
             <div className="flex flex-col gap-4">
               {navItems.map((item) => (
                 <button
