@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import SmoothScroll from "./smooth-scroll";
+import { Poppins, Inter } from "next/font/google";
 
 // export const metadata: Metadata = {
 //   title: "Lorenta Technologies",
@@ -11,6 +12,20 @@ import SmoothScroll from "./smooth-scroll";
 //   },
 //   manifest: "/site.webmanifest",
 // };
+
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
+  variable: "--font-poppins",
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-inter",
+});
+
 
 export const metadata: Metadata = {
   title: "Lorenta Technologies",
@@ -24,7 +39,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
+       <body className={`${inter.variable} ${poppins.variable} font-sans`}>
         <SmoothScroll>{children}</SmoothScroll>
       </body>
     </html>

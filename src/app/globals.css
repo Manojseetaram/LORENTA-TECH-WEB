@@ -1,4 +1,4 @@
-@import "tailwindcss";
+/* @import "tailwindcss";
 
 :root {
   --bg: #e6ecfa;
@@ -9,9 +9,18 @@
   --shadow: 0 18px 45px rgba(2, 6, 23, 0.10);
 }
 
+:root {
+  --font-heading: var(--font-poppins);
+  --font-body: var(--font-inter);
+}
+
+body {
+  font-family: var(--font-body);
+}
+ 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 100px; /* Increased to account for navbar + logo */
+  scroll-padding-top: 100px; 
 }
 
 body {
@@ -30,5 +39,59 @@ body {
 }
 
 section[id] {
-  scroll-margin-top: 100px; /* Match scroll-padding-top */
+  scroll-margin-top: 100px; 
+} */
+
+
+@import "tailwindcss";
+
+/* ========================
+   Root Variables
+======================== */
+:root {
+  --bg: #e6ecfa;
+  --text: #0f172a;
+  --muted: #64748b;
+  --card: rgba(255, 255, 255, 0.7);
+  --border: rgba(15, 23, 42, 0.10);
+  --shadow: 0 18px 45px rgba(2, 6, 23, 0.10);
+
+  --font-heading: var(--font-poppins);
+  --font-body: var(--font-inter);
+}
+
+/* ========================
+   Global Reset
+======================== */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px; /* navbar offset */
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+
+  background: var(--bg);
+  color: var(--text);
+
+  font-family: var(--font-body);
+}
+
+/* ========================
+   Utility Background Grid
+======================== */
+.bg-grid {
+  background-image:
+    linear-gradient(to right, rgba(15,23,42,0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15,23,42,0.06) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* ========================
+   Section Scroll Offset
+======================== */
+section[id] {
+  scroll-margin-top: 100px;
 }

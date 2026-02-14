@@ -9,6 +9,7 @@ import HowToUse from "./components/sections/HowToUse";
 import WhyUs from "./components/sections/WhyUs";
 import Services from "./components/sections/Services";
 import Contact from "./components/sections/Contact";
+import Footer from "./components/sections/footer";
 
 type SectionKey = "home" | "how" | "why" | "services" | "contact";
 
@@ -81,6 +82,7 @@ export default function HomePage() {
         <WhyUs />
         <Services />
         <Contact />
+        <Footer />
       </div>
     </main>
   );
