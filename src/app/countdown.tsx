@@ -73,7 +73,7 @@ export default function InaugurationPage() {
 
       {/* Footer - Inter */}
       <p className={`${inter.className} absolute bottom-4 text-white text-sm`}>
-        © 2026 Loren Venture. All Rights Reserved.
+        © 2026 Lorenta Technologies. All Rights Reserved.
       </p>
     </div>
   );
