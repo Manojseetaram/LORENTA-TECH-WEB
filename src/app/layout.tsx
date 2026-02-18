@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import SmoothScroll from "./smooth-scroll";
 import { Poppins, Inter } from "next/font/google";
+import { Toaster } from "sonner";
 
 // export const metadata: Metadata = {
 //   title: "Lorenta Technologies",
@@ -41,6 +42,7 @@ export default function RootLayout({
     <html lang="en">
        <body className={`${inter.variable} ${poppins.variable} font-sans`}>
         <SmoothScroll>{children}</SmoothScroll>
+         <Toaster position="bottom-right" richColors />
       </body>
     </html>
   );

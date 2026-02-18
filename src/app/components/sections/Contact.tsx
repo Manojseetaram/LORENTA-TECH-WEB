@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { Phone, Mail, User, MessageSquare } from "lucide-react";
+import { toast } from "sonner";
 
 interface FormData {
   name: string;
@@ -18,32 +19,44 @@ export default function Contact() {
     message: "",
   });
 
-  const [status, setStatus] = useState<string>("");
 
-  const submit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setStatus("Sending...");
 
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+ const submit = async (e: React.FormEvent) => {
+  e.preventDefault();
+
+  const loadingToast = toast.loading("Sending message...");
+
+  try {
+    const res = await fetch("/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(form),
+    });
+
+    const data = await res.json();
+
+    if (res.ok) {
+      toast.success(data.message || "Message sent successfully!", {
+        id: loadingToast,
       });
 
-      const data = await res.json();
-
-      if (res.ok) {
-        setStatus("✅ Message sent successfully!");
-        setForm({ name: "", phone: "", email: "", message: "" });
-        setTimeout(() => setStatus(""), 5000);
-      } else {
-        setStatus(`❌ Failed: ${data.message || "Try again."}`);
-      }
-    } catch {
-      setStatus("❌ Network error. Please check your connection.");
+      setForm({
+        name: "",
+        phone: "",
+        email: "",
+        message: "",
+      });
+    } else {
+      toast.error(data.message || "Failed to send message", {
+        id: loadingToast,
+      });
     }
-  };
+  } catch (error) {
+    toast.error("Network error. Please try again.", {
+      id: loadingToast,
+    });
+  }
+};
 
   return (
     <section
@@ -67,31 +80,30 @@ export default function Contact() {
               <div className="mt-8 space-y-4 text-[var(--text)]">
                 <div className="flex items-center gap-3">
                   <Phone className="h-4 w-4 text-indigo-600" />
-                  <span>Contact Number: (add your number)</span>
+                  <span>Contact Number: 8618634848</span>
                 </div>
 
-                <div className="flex items-center gap-3">
+                {/* <div className="flex items-center gap-3">
                   <Mail className="h-4 w-4 text-indigo-600" />
                   <span>Email: sales@lorentatechnologies.com</span>
-                </div>
+                </div> */}
 
-                <div className="mt-4 text-[var(--muted)]">
+                {/* <div className="mt-4 text-[var(--muted)]">
                   Head Office: (add address)
-                </div>
+                </div> */}
 
-                <div className="text-xs text-[var(--muted)] mt-2">
+                {/* <div className="text-xs text-[var(--muted)] mt-2">
                   sales@lorentatechnologies Pvt Ltd
-                </div>
+                </div> */}
               </div>
             </div>
 
             {/* Form */}
             <ContactForm
-              form={form}
-              setForm={setForm}
-              submit={submit}
-              status={status}
-            />
+  form={form}
+  setForm={setForm}
+  submit={submit}
+/>  
           </div>
         </div>
       </div>
