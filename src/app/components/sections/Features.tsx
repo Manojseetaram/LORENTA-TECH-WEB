@@ -13,7 +13,7 @@ export default function Features() {
   return (
     <section className="py-16 sm:py-24">
       <div className="mx-auto max-w-6xl px-6">
-
+{/* nothing changed */}
         <div
           className="
             relative
