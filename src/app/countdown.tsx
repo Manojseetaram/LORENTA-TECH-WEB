@@ -54,7 +54,7 @@ export default function InaugurationPage() {
       <p className={`${inter.className} text-xl md:text-2xl text-white mb-12`}>
         Something Big is Coming!!!
       </p>
-
+{/* Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloremque, veritatis reprehenderit. Optio inventore dolore aliquid, praesentium iusto voluptates, nobis facilis neque atque reiciendis error porro eius nihil. Debitis, laboriosam qui. */}
       {/* Countdown Numbers - Poppins */}
       <div className={`flex flex-wrap justify-center gap-6 md:gap-10 text-4xl md:text-6xl ${poppins.className}`}>
         {Object.entries(timeLeft).map(([key, value]) => (
