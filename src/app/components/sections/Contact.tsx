@@ -100,10 +100,9 @@ export default function Contact() {
 
             {/* Form */}
             <ContactForm
-  form={form}
-  setForm={setForm}
-  submit={submit}
-/>  
+              form={form}
+              setForm={setForm}
+              submit={submit} status={""}/>  
           </div>
         </div>
       </div>
