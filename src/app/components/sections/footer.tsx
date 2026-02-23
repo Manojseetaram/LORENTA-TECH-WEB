@@ -58,7 +58,7 @@ export default function Footer() {
 
               <div className="flex items-start gap-3">
                 <Phone className="h-4 w-4 text-indigo-600 mt-0.5" />
-                <span>(Add your phone number)</span>
+                <span>7899957067</span>
               </div>
 
               <div className="flex items-start gap-3">
@@ -68,7 +68,7 @@ export default function Footer() {
 
               <div className="flex items-start gap-3">
                 <MapPin className="h-4 w-4 text-indigo-600 mt-0.5" />
-                <span>(Add your address)</span>
+                <span>Mijar Manglore</span>
               </div>
 
             </div>
