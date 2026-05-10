@@ -14,7 +14,7 @@ export default function Hero() {
 
   useEffect(() => {
     let ctx: any;
-
+// Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum necessitatibus porro non placeat, laborum facere commodi perspiciatis voluptate sapiente laboriosam iusto eaque excepturi, doloribus suscipit sit? Necessitatibus, blanditiis ea. Nesciunt.
     const loadGsap = async () => {
       const { gsap } = await import("gsap");
 
