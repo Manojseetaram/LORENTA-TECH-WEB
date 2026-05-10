@@ -1,15 +1,15 @@
 "use client";
 
 import { useEffect, useState, useCallback } from "react";
-import Navbar from "./components/layout/Navbar";
+// import Navbar from "./components/layout/Navbar";
 import Hero from "./components/sections/Hero";
-import Features from "./components/sections/Features";
-import MarqueeStrip from "./components/sections/MarqueeStrip";
-import HowToUse from "./components/sections/HowToUse";
-import WhyUs from "./components/sections/WhyUs";
-import Services from "./components/sections/Services";
-import Contact from "./components/sections/Contact";
-import Footer from "./components/sections/footer";
+// import Features from "./components/sections/Features";
+// import MarqueeStrip from "./components/sections/MarqueeStrip";
+// import HowToUse from "./components/sections/HowToUse";
+// import WhyUs from "./components/sections/WhyUs";
+// import Services from "./components/sections/Services";
+// import Contact from "./components/sections/Contact";
+// import Footer from "./components/sections/footer";
 // import CountdownPage from "./countdown";
 
 type SectionKey = "home" | "how" | "why" | "services" | "contact";
@@ -72,18 +72,18 @@ export default function HomePage() {
 
   return (
     <main className="min-h-screen w-full overflow-x-hidden bg-grid">
-      <Navbar active={active} scrollTo={scrollTo} />
+      {/* <Navbar active={active} scrollTo={scrollTo} /> */}
 
       {/* Sections wrapped in responsive container */}
       <div className="flex flex-col">
        <Hero scrollTo={scrollTo} /> 
-        <Features />
+        {/* <Features />
         <MarqueeStrip />
         <HowToUse />
         <WhyUs />
         <Services />
         <Contact />
-        <Footer />
+        <Footer /> */}
          {/* <CountdownPage /> */}
       </div>
     </main>
