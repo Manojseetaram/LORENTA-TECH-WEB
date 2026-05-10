@@ -12,7 +12,12 @@ import Hero from "./components/sections/Hero";
 // import Footer from "./components/sections/footer";
 // import CountdownPage from "./countdown";
 
-type SectionKey = "home" | "how" | "why" | "services" | "contact";
+export type SectionKey =
+  | "home"
+  | "how"
+  | "why"
+  | "services"
+  | "contact";
 
 export default function HomePage() {
   const [active, setActive] = useState<SectionKey>("home");
@@ -42,13 +47,16 @@ export default function HomePage() {
       },
       {
         threshold: 0.4,
-        rootMargin: "-80px 0px -80px 0px", // better for mobile
+        rootMargin: "-80px 0px -80px 0px",
       }
     );
 
     idsToObserve.forEach((id) => {
       const element = document.getElementById(id);
-      if (element) observer.observe(element);
+
+      if (element) {
+        observer.observe(element);
+      }
     });
 
     return () => observer.disconnect();
@@ -56,8 +64,10 @@ export default function HomePage() {
 
   const scrollTo = useCallback((key: SectionKey) => {
     const element = document.getElementById(key);
+
     if (element) {
-      const yOffset = -80; // offset for fixed navbar
+      const yOffset = -80;
+
       const y =
         element.getBoundingClientRect().top +
         window.pageYOffset +
@@ -74,9 +84,9 @@ export default function HomePage() {
     <main className="min-h-screen w-full overflow-x-hidden bg-grid">
       {/* <Navbar active={active} scrollTo={scrollTo} /> */}
 
-      {/* Sections wrapped in responsive container */}
       <div className="flex flex-col">
-       <Hero scrollTo={scrollTo} /> 
+        <Hero/>
+
         {/* <Features />
         <MarqueeStrip />
         <HowToUse />
@@ -84,7 +94,6 @@ export default function HomePage() {
         <Services />
         <Contact />
         <Footer /> */}
-         {/* <CountdownPage /> */}
       </div>
     </main>
   );

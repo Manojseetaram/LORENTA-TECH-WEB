@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef } from "react";
 import Image from "next/image";
-
+import { SectionKey } from "@/app/page";
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
   const logoRef = useRef<HTMLDivElement>(null);
